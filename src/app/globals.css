@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+@theme {
+  --font-display: var(--font-display), serif;
+  --font-body: var(--font-body), sans-serif;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis takes over scroll physics */
+}
+
+body {
+  background-color: #080808;
+  color: #f5f5f3;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #e8e8e6;
+  color: #080808;
+}
+
+/* Slim silver-tinted scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 3px;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Visible, on-brand keyboard focus ring — accessibility, not decoration */
+:focus-visible {
+  outline: 1px solid #e8e8e6;
+  outline-offset: 3px;
+}
+
+.hairline {
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(120deg, #9a9a96 0%, #ffffff 50%, #9a9a96 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.ink-splash-layer {
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: inherit;
+  background-repeat: no-repeat;
+  background-size: 46% 220%, 50% 220%, 40% 200%, 44% 200%;
+  background-image: radial-gradient(circle, #9E1B2B 0%, rgba(158, 27, 43, 0) 68%),
+    radial-gradient(circle, #043B5B 0%, rgba(4, 59, 91, 0) 68%),
+    radial-gradient(circle, #82121E 0%, rgba(130, 18, 30, 0) 70%),
+    radial-gradient(circle, #042A45 0%, rgba(4, 42, 69, 0) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  mix-blend-mode: normal;
+}
