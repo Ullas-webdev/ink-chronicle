@@ -20,6 +20,7 @@ export function Header() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 40);
@@ -28,6 +29,26 @@ export function Header() {
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
   }, [menuOpen]);
+
+  useEffect(() => {
+    const handleComplete = () => setHeaderVisible(true);
+
+    if (typeof window !== "undefined") {
+      const alreadyShown = sessionStorage.getItem("ic_intro_shown") === "true";
+      const isReload = Boolean(
+        window.performance &&
+        window.performance.getEntriesByType &&
+        window.performance.getEntriesByType("navigation")[0] &&
+        (window.performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming).type === "reload"
+      );
+      if (alreadyShown && !isReload) {
+        setHeaderVisible(true);
+      }
+    }
+
+    window.addEventListener("ic-loading-complete", handleComplete);
+    return () => window.removeEventListener("ic-loading-complete", handleComplete);
+  }, []);
 
   const handleLogoClick = () => {
     if (typeof window !== "undefined" && window.location.pathname === "/") {
@@ -49,6 +70,8 @@ export function Header() {
   return (
     <motion.header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        headerVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+      } ${
         scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-black/5" : "bg-transparent"
       }`}
     >

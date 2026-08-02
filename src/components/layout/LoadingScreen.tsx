@@ -444,7 +444,7 @@ function WordmarkCanvas({ active }: { active: boolean }) {
 export function LoadingScreen() {
   const prefersReducedMotion = useReducedMotion();
   const [phase, setPhase]   = useState<Phase>("seal");
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
