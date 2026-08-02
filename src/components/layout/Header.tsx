@@ -87,14 +87,13 @@ export function Header() {
         >
           <Image
             src="/logo-mark.png"
-            alt=""
+            alt="Ink Chronicle Logo"
             width={347}
             height={624}
             priority
-            className="h-9 md:h-10 w-auto transition-all duration-500 group-hover:opacity-100"
+            className="h-9 md:h-10 w-auto transition-all duration-300 opacity-100"
             style={{
-              opacity: scrolled ? 0.9 : 0.95,
-              filter: scrolled ? "invert(1) brightness(0)" : "none",
+              filter: scrolled ? "brightness(0)" : "brightness(0) invert(1)",
             }}
           />
           <span
