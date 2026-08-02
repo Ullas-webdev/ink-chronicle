@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/ui/Marquee";
 import { CategoryBanners } from "@/components/sections/CategoryBanners";
+import { SubscribeDigitalInk } from "@/components/sections/SubscribeDigitalInk";
 import { ArtistPortfolio } from "@/components/sections/ArtistPortfolio";
 import { StyleExplorer } from "@/components/sections/StyleExplorer";
 import { Piercings } from "@/components/sections/Piercings";
@@ -28,6 +29,7 @@ export default function HomePage() {
       <Hero />
       <Marquee items={PRESS} />
       <CategoryBanners />
+      <SubscribeDigitalInk />
       <ArtistPortfolio />
       <StyleExplorer />
       <Piercings />
