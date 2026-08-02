@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -22,23 +23,54 @@ const itemFadeUp = {
   },
 };
 
-const itemFade = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { duration: 1.2, ease: "easeOut" },
-  },
-};
-
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Helper to reset and play video from the beginning (0s)
+    const playFromBeginning = () => {
+      try {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } catch (err) {
+        console.warn("Video playback start error:", err);
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      const alreadyShown = sessionStorage.getItem("ic_intro_shown") === "true";
+      const isReload = Boolean(
+        window.performance &&
+        window.performance.getEntriesByType &&
+        window.performance.getEntriesByType("navigation")[0] &&
+        (window.performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming).type === "reload"
+      );
+
+      // If intro already completed and not a fresh reload, play video
+      if (alreadyShown && !isReload) {
+        playFromBeginning();
+      } else {
+        // Pause until loading screen finishes
+        video.pause();
+      }
+    }
+
+    // Listen for loading screen completion event to start video at 0:00
+    window.addEventListener("ic-loading-complete", playFromBeginning);
+    return () => window.removeEventListener("ic-loading-complete", playFromBeginning);
+  }, []);
+
   return (
     <section
       id="top"
       className="relative min-h-[100svh] flex flex-col justify-between overflow-hidden bg-ink-black"
     >
-      {/* Video background - behind all hero content */}
+      {/* Background video — starts playing from 0:00 after loading screen completes */}
       <video
-        autoPlay
+        ref={videoRef}
         loop
         muted
         playsInline
@@ -90,7 +122,7 @@ export function Hero() {
           className="mt-12 flex flex-col sm:flex-row gap-4"
         >
           <a href="#booking">
-            <Button>Request a Consultation</Button>
+            <Button>Tell Us Your Idea</Button>
           </a>
           <a href="#gallery">
             <Button variant="outline">View the Gallery</Button>

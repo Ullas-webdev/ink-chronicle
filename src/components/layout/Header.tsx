@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -94,17 +94,18 @@ export function Header() {
             className="h-9 md:h-10 w-auto transition-all duration-500 group-hover:opacity-100"
             style={{
               opacity: scrolled ? 0.9 : 0.95,
-              filter: scrolled ? 'invert(1) brightness(0)' : 'none',
+              filter: scrolled ? "invert(1) brightness(0)" : "none",
             }}
           />
           <span
             className="font-display text-xl tracking-widest2 transition-colors duration-300"
-            style={{ color: scrolled ? '#080808' : '#F5F5F3' }}
+            style={{ color: scrolled ? "#080808" : "#F5F5F3" }}
           >
             INK CHRONICLE
           </span>
         </Link>
 
+        {/* Desktop Nav Links */}
         <ul className="hidden md:flex items-center gap-10">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
@@ -112,7 +113,7 @@ export function Header() {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="text-xs md:text-sm uppercase tracking-widest2 transition-colors duration-300 hover:!text-gold"
-                style={{ color: scrolled ? '#080808' : 'rgba(245,245,243,0.7)' }}
+                style={{ color: scrolled ? "#080808" : "rgba(245,245,243,0.7)" }}
               >
                 {link.label}
               </Link>
@@ -120,20 +121,22 @@ export function Header() {
           ))}
         </ul>
 
+        {/* Desktop CTA */}
         <Link
           href="/#booking"
           onClick={(e) => handleNavClick(e, "/#booking")}
           className="hidden md:inline-block text-xs md:text-sm uppercase tracking-widest2 border px-6 py-3 transition-all duration-300 hover:bg-[#e5d3b3] hover:border-[#e5d3b3] hover:!text-[#080808]"
           style={{
-            color: scrolled ? '#080808' : '#F5F5F3',
-            borderColor: scrolled ? 'rgba(8,8,8,0.2)' : 'rgba(232,232,230,0.5)',
+            color: scrolled ? "#080808" : "#F5F5F3",
+            borderColor: scrolled ? "rgba(8,8,8,0.2)" : "rgba(232,232,230,0.5)",
           }}
         >
           Tell Us Your Idea
         </Link>
 
+        {/* Mobile Hamburger Toggle Button */}
         <button
-          className="md:hidden"
+          className="md:hidden p-2 rounded-lg"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
@@ -156,38 +159,60 @@ export function Header() {
         </button>
       </nav>
 
-      {menuOpen && (
-        <motion.div
-          className="md:hidden bg-ink-black border-t hairline px-6 py-10 flex flex-col gap-8 text-bone"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={(e) => {
-                setMenuOpen(false);
-                handleNavClick(e, link.href);
-              }}
-              className="font-display text-2xl hover:text-gold transition-colors duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/#booking"
-            onClick={(e) => {
-              setMenuOpen(false);
-              handleNavClick(e, "/#booking");
-            }}
-            className="text-xs md:text-sm uppercase tracking-widest2 border border-gold/50 px-6 py-4 w-fit hover:border-[#e5d3b3] hover:bg-[#e5d3b3] hover:text-ink-black transition-all duration-300"
+      {/* Mobile Menu Container Element */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden px-4 pb-6"
           >
-            Tell Us Your Idea
-          </Link>
-        </motion.div>
-      )}
+            {/* Mobile Nav Links Grouped Container Box */}
+            <div className="bg-neutral-950/95 border border-white/20 backdrop-blur-2xl rounded-2xl p-6 shadow-2xl flex flex-col gap-6 text-bone">
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-gold flex items-center gap-1.5">
+                  <span>✦ Studio Navigation</span>
+                </span>
+                <span className="text-[10px] font-mono text-bone/40">INK CHRONICLE</span>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      setMenuOpen(false);
+                      handleNavClick(e, link.href);
+                    }}
+                    className="font-display text-xl tracking-wide text-bone/90 hover:text-gold transition-colors duration-300 flex items-center justify-between group py-1"
+                  >
+                    <span>{link.label}</span>
+                    <span className="text-xs text-gold/0 group-hover:text-gold transition-all duration-300 transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </Link>
+                ))}
+              </div>
+
+              <div className="pt-4 border-t border-white/10">
+                <Link
+                  href="/#booking"
+                  onClick={(e) => {
+                    setMenuOpen(false);
+                    handleNavClick(e, "/#booking");
+                  }}
+                  className="w-full block text-center text-xs uppercase tracking-widest2 bg-gold text-ink-black font-bold py-4 rounded-xl hover:bg-gold-soft transition-all duration-300 shadow-lg"
+                >
+                  Tell Us Your Idea
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
