@@ -448,9 +448,17 @@ export function LoadingScreen() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      const isReload = Boolean(
+        window.performance &&
+        window.performance.getEntriesByType &&
+        window.performance.getEntriesByType("navigation")[0] &&
+        (window.performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming).type === "reload"
+      );
       const alreadyLoaded = sessionStorage.getItem("ic_intro_shown") === "true";
       const hasHash = Boolean(window.location.hash);
-      if (alreadyLoaded || hasHash) {
+
+      // If user intentionally refreshes, force loading screen to play
+      if (!isReload && (alreadyLoaded || hasHash)) {
         setMounted(false);
         window.dispatchEvent(new CustomEvent("ic-loading-complete"));
       } else {
