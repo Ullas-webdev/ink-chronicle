@@ -293,25 +293,27 @@ function TattooMachine({ buzzing }: { buzzing: boolean }) {
 
 // ─── Wordmark canvas ──────────────────────────────────────────────────────────
 
-function WordmarkCanvas({ active }: { active: boolean }) {
+function WordmarkCanvas({ active, isDrawing }: { active: boolean; isDrawing: boolean }) {
   const svgRef  = useRef<SVGSVGElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  // Machine pixel position relative to wrapper (tip of needle = this point)
   const [machineXY, setMachineXY] = useState<{ x: number; y: number } | null>(null);
-  // Ink-bleed ellipse in SVG user units
   const [bleedUV,   setBleedUV]   = useState<{ ux: number; uy: number } | null>(null);
   const [machineVisible, setMachineVisible] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
     if (!active) return;
+    setHasStarted(true);
+
+    if (!isDrawing) {
+      setMachineVisible(false);
+      setBleedUV(null);
+      return;
+    }
 
     let appeared = false;
 
-    // Drive a linear 0 → DRAW_END timer.
-    // onUpdate fires every frame with the current elapsed time t.
-    // We find which glyph is active at time t and use getPointAtLength
-    // to get the exact SVG coordinate of the needle tip — no CSS reading.
     const controls = fmAnimate(0, DRAW_END, {
       duration: DRAW_END,
       ease: "linear",
@@ -320,18 +322,15 @@ function WordmarkCanvas({ active }: { active: boolean }) {
         const wrap = wrapRef.current;
         if (!svg || !wrap) return;
 
-        // Find the most recent glyph that has started
         let activeGlyph: Glyph | null = null;
         for (const g of GLYPHS) {
           if (g.t0 <= t) activeGlyph = g;
         }
         if (!activeGlyph) return;
 
-        // Progress within this glyph [0, 1)
         const raw = (t - activeGlyph.t0) / activeGlyph.dur;
         const progress = Math.min(0.998, Math.max(0.001, raw));
 
-        // Look up the matching <path> in the SVG
         const pathEl = svg.querySelector<SVGPathElement>(
           `path[data-glyph="${activeGlyph.id}"]`
         );
@@ -342,7 +341,6 @@ function WordmarkCanvas({ active }: { active: boolean }) {
 
         const pt = pathEl.getPointAtLength(progress * total);
 
-        // Convert SVG user-units → wrapper-relative pixels
         const svgRect  = svg.getBoundingClientRect();
         const wrapRect = wrap.getBoundingClientRect();
         const scaleX   = svgRect.width  / VW;
@@ -358,7 +356,7 @@ function WordmarkCanvas({ active }: { active: boolean }) {
     });
 
     return () => { controls.stop(); };
-  }, [active]);
+  }, [active, isDrawing]);
 
   return (
     <div ref={wrapRef} style={{ position:"relative", userSelect:"none" }}>
@@ -371,7 +369,7 @@ function WordmarkCanvas({ active }: { active: boolean }) {
         aria-hidden
         style={{ maxWidth:"min(440px, 90vw)", height:"auto", overflow:"visible", display:"block" }}
       >
-        {/* Ghost anticipation text (almost invisible) */}
+        {/* Ghost anticipation text */}
         <text
           x={VW/2} y={VH*0.78} textAnchor="middle"
           fill="rgba(232,232,230,0.03)"
@@ -380,7 +378,7 @@ function WordmarkCanvas({ active }: { active: boolean }) {
           style={{ pointerEvents:"none" }}
         >INK CHRONICLE</text>
 
-        {/* Animated stroke letters */}
+        {/* Animated stroke letters — stay visible once drawn */}
         {GLYPHS.map(g => (
           <motion.path
             key={g.id}
@@ -392,7 +390,7 @@ function WordmarkCanvas({ active }: { active: boolean }) {
             strokeLinejoin="round"
             fill="none"
             initial={{ pathLength:0, opacity:0 }}
-            animate={active ? { pathLength:1, opacity:1 } : { pathLength:0, opacity:0 }}
+            animate={hasStarted ? { pathLength:1, opacity:1 } : { pathLength:0, opacity:0 }}
             transition={{
               pathLength: { delay:g.t0, duration:g.dur, ease:[0.4,0,0.6,1] },
               opacity:    { delay:g.t0, duration:0.01 },
@@ -401,7 +399,7 @@ function WordmarkCanvas({ active }: { active: boolean }) {
         ))}
 
         {/* Ink-bleed glow spot */}
-        {bleedUV && active && (
+        {bleedUV && isDrawing && (
           <motion.ellipse
             cx={bleedUV.ux} cy={bleedUV.uy}
             rx={14} ry={5.5}
@@ -414,13 +412,11 @@ function WordmarkCanvas({ active }: { active: boolean }) {
 
       {/* ── Tattoo machine, needle tip pinned to machineXY ── */}
       <AnimatePresence>
-        {machineVisible && machineXY && (
+        {isDrawing && machineVisible && machineXY && (
           <motion.div
             key="machine"
             style={{
               position: "absolute",
-              // TattooMachine SVG: 52 wide × 110 tall; needle tip at (26, 110)
-              // → offset left 26px, up 110px so the tip lands on machineXY
               left: machineXY.x - 26,
               top:  machineXY.y - 110,
               pointerEvents: "none",
@@ -431,7 +427,7 @@ function WordmarkCanvas({ active }: { active: boolean }) {
             exit={{ opacity:0 }}
             transition={{ duration:0.2, ease:[0.22,1,0.36,1] }}
           >
-            <TattooMachine buzzing={active} />
+            <TattooMachine buzzing={isDrawing} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -529,7 +525,8 @@ export function LoadingScreen() {
   if (!mounted) return null;
 
   const sealDone   = phase !== "seal";
-  const drawActive = phase === "draw";
+  const drawActive = ["draw", "tagline", "hold", "leave"].includes(phase);
+  const isDrawing  = phase === "draw";
   const taglineShow = ["tagline","hold","leave"].includes(phase);
   const leaving    = phase === "leave";
 
@@ -609,7 +606,7 @@ export function LoadingScreen() {
           animate={{ opacity: sealDone ? 1 : 0 }}
           transition={{ duration:0.15 }}
         >
-          <WordmarkCanvas active={drawActive}/>
+          <WordmarkCanvas active={drawActive} isDrawing={isDrawing} />
         </motion.div>
 
         {/* Tagline */}
