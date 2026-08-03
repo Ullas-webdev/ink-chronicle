@@ -14,20 +14,30 @@ export const metadata: Metadata = {
   title: "Private Luxury Tattoo Studio, Mayfair",
 };
 
-const PRESS = [
-  "Vogue",
-  "GQ",
-  "Wallpaper*",
-  "Tatler",
-  "Monocle",
-  "The Financial Times",
+const TATTOO_PIERCING_HIGHLIGHTS = [
+  "Custom Fine Line Tattoos",
+  "✦",
+  "Precision Body Piercing",
+  "✦",
+  "Micro-Realism & Blackwork",
+  "✦",
+  "Implant-Grade Titanium Jewelry",
+  "✦",
+  "Sacred Geometry & Heirlooms",
+  "✦",
+  "Curated Ear & Body Styling",
+  "✦",
+  "Sterile Single-Use Equipment",
+  "✦",
+  "Private Studio Atelier",
+  "✦",
 ];
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee items={PRESS} />
+      <Marquee items={TATTOO_PIERCING_HIGHLIGHTS} />
       <CategoryBanners />
       <SubscribeDigitalInk />
       <ArtistPortfolio />
