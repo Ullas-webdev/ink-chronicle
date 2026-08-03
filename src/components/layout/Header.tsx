@@ -133,27 +133,54 @@ export function Header() {
           Tell Us Your Idea
         </Link>
 
-        {/* Mobile Hamburger Toggle Button */}
+        {/* Mobile Custom Panel Journal Toggle Button */}
         <button
-          className="md:hidden p-2 rounded-lg"
+          className="md:hidden p-1.5 rounded-lg focus:outline-none transition-transform duration-200 active:scale-95"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
-          <span className="sr-only">Menu</span>
-          <div className="flex flex-col gap-1.5 w-6">
-            <motion.span
-              className={`h-px w-full transition-colors ${scrolled ? "bg-ink-black" : "bg-bone"}`}
-              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 5 : 0 }}
-            />
-            <motion.span
-              className={`h-px w-full transition-colors ${scrolled ? "bg-ink-black" : "bg-bone"}`}
-              animate={{ opacity: menuOpen ? 0 : 1 }}
-            />
-            <motion.span
-              className={`h-px w-full transition-colors ${scrolled ? "bg-ink-black" : "bg-bone"}`}
-              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -5 : 0 }}
-            />
+          <span className="sr-only">Toggle menu</span>
+          <div className="relative w-8 h-8 flex items-center justify-center">
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-8 drop-shadow"
+            >
+              {/* Left vertical bar */}
+              <rect
+                x="3"
+                y="3"
+                width="5"
+                height="24"
+                rx="1"
+                fill={scrolled ? "#080808" : "#F5F5F3"}
+                className="transition-colors duration-300"
+              />
+              {/* Right main panel rectangle */}
+              <rect
+                x="10"
+                y="3"
+                width="17"
+                height="24"
+                rx="1"
+                fill={scrolled ? "#080808" : "#F5F5F3"}
+                className="transition-colors duration-300"
+              />
+              {/* Inner chevron '<' matching uploaded design */}
+              <motion.path
+                d="M21 11L17 15L21 19"
+                stroke={scrolled ? "#FFFFFF" : "#080808"}
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                animate={{ rotate: menuOpen ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </svg>
           </div>
         </button>
       </nav>
