@@ -341,17 +341,20 @@ function WordmarkCanvas({ active, isDrawing }: { active: boolean; isDrawing: boo
 
         const pt = pathEl.getPointAtLength(progress * total);
 
+        // Add offset (+14.5) to align path center (155.5) with SVG canvas center (170)
+        const realX = pt.x + 14.5;
+
         const svgRect  = svg.getBoundingClientRect();
         const wrapRect = wrap.getBoundingClientRect();
         const scaleX   = svgRect.width  / VW;
         const scaleY   = svgRect.height / VH;
 
-        const px = pt.x * scaleX + (svgRect.left - wrapRect.left);
-        const py = pt.y * scaleY + (svgRect.top  - wrapRect.top);
+        const px = realX * scaleX + (svgRect.left - wrapRect.left);
+        const py = pt.y   * scaleY + (svgRect.top  - wrapRect.top);
 
         if (!appeared) { setMachineVisible(true); appeared = true; }
         setMachineXY({ x: px, y: py });
-        setBleedUV({ ux: pt.x, uy: pt.y });
+        setBleedUV({ ux: realX, uy: pt.y });
       },
     });
 
@@ -369,7 +372,7 @@ function WordmarkCanvas({ active, isDrawing }: { active: boolean; isDrawing: boo
         aria-hidden
         style={{ maxWidth:"min(440px, 90vw)", height:"auto", overflow:"visible", display:"block" }}
       >
-        {/* Ghost anticipation text */}
+        {/* Ghost anticipation text centered at VW/2 = 170 */}
         <text
           x={VW/2} y={VH*0.78} textAnchor="middle"
           fill="rgba(232,232,230,0.03)"
@@ -378,25 +381,27 @@ function WordmarkCanvas({ active, isDrawing }: { active: boolean; isDrawing: boo
           style={{ pointerEvents:"none" }}
         >INK CHRONICLE</text>
 
-        {/* Animated stroke letters — stay visible once drawn */}
-        {GLYPHS.map(g => (
-          <motion.path
-            key={g.id}
-            data-glyph={g.id}
-            d={g.d}
-            stroke="#E8E8E6"
-            strokeWidth={g.sw}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            initial={{ pathLength:0, opacity:0 }}
-            animate={hasStarted ? { pathLength:1, opacity:1 } : { pathLength:0, opacity:0 }}
-            transition={{
-              pathLength: { delay:g.t0, duration:g.dur, ease:[0.4,0,0.6,1] },
-              opacity:    { delay:g.t0, duration:0.01 },
-            }}
-          />
-        ))}
+        {/* Animated stroke letters — shifted +14.5 for 100% perfect center alignment */}
+        <g transform="translate(14.5, 0)">
+          {GLYPHS.map(g => (
+            <motion.path
+              key={g.id}
+              data-glyph={g.id}
+              d={g.d}
+              stroke="#E8E8E6"
+              strokeWidth={g.sw}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+              initial={{ pathLength:0, opacity:0 }}
+              animate={hasStarted ? { pathLength:1, opacity:1 } : { pathLength:0, opacity:0 }}
+              transition={{
+                pathLength: { delay:g.t0, duration:g.dur, ease:[0.4,0,0.6,1] },
+                opacity:    { delay:g.t0, duration:0.01 },
+              }}
+            />
+          ))}
+        </g>
 
         {/* Ink-bleed glow spot */}
         {bleedUV && isDrawing && (
