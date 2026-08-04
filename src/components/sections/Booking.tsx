@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MapPin, CheckCircle2, Phone, Mail, MessageCircle, ExternalLink } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -19,6 +20,7 @@ const STYLES = [
 ];
 
 export function Booking() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -40,6 +42,20 @@ export function Booking() {
 
   const handleSelect = (key: keyof typeof formData, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
+    if (key === "service") {
+      if (value.includes("Tattoo Training") || value.includes("Academy")) {
+        router.push("/tattoo-training");
+        return;
+      }
+      if (value.includes("Pencil Art") || value.includes("Paintings")) {
+        router.push("/pencil-art-and-paintings");
+        return;
+      }
+      if (value === "Piercings") {
+        router.push("/piercings");
+        return;
+      }
+    }
     if (key !== "name" && key !== "email" && key !== "phone") {
       setTimeout(nextStep, 250);
     }

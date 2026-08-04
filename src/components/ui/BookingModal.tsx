@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -19,6 +20,7 @@ const STYLES = [
 ];
 
 export function BookingModal() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
 
@@ -49,14 +51,19 @@ export function BookingModal() {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href="#booking"]');
       if (anchor) {
+        e.preventDefault();
         setIsOpen(true);
         setStep(0);
+        window.history.pushState(null, "", "#booking");
       }
     };
 
     window.addEventListener("hashchange", handleHashChange);
     document.addEventListener("click", handleLinkClick);
-    handleHashChange(); // Check on mount
+
+    if (window.location.hash === "#booking") {
+      setIsOpen(true);
+    }
 
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
@@ -74,6 +81,23 @@ export function BookingModal() {
 
   const handleSelect = (key: keyof typeof formData, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
+    if (key === "service") {
+      if (value.includes("Tattoo Training") || value.includes("Academy")) {
+        closeModal();
+        router.push("/tattoo-training");
+        return;
+      }
+      if (value.includes("Pencil Art") || value.includes("Paintings")) {
+        closeModal();
+        router.push("/pencil-art-and-paintings");
+        return;
+      }
+      if (value === "Piercings") {
+        closeModal();
+        router.push("/piercings");
+        return;
+      }
+    }
     // Auto-advance for multiple choice questions
     if (key !== "name" && key !== "email" && key !== "phone") {
       setTimeout(nextStep, 300);
