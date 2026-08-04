@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GraduationCap, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 const HOURS = [
   { day: "Monday — Sunday", time: "10:00 AM — 9:00 PM" },
@@ -36,21 +36,7 @@ export function Footer() {
             </a>
           </div>
 
-          {/* Careers Box */}
-          <div className="mt-2 p-5 border border-gold/30 bg-ink-charcoal rounded-sm flex flex-col gap-2 max-w-sm">
-            <div className="flex items-center gap-2 text-gold text-xs uppercase tracking-widest2 font-semibold">
-              <GraduationCap size={16} /> Academy & Careers
-            </div>
-            <p className="text-xs text-bone/70 font-light leading-relaxed">
-              Pavan Kumar personally trains students 1-on-1 for a successful career in tattooing & aesthetics.
-            </p>
-            <Link
-              href="/careers"
-              className="text-xs uppercase tracking-widest2 text-gold hover:text-white transition-colors mt-1 font-semibold underline underline-offset-4"
-            >
-              Explore Training & Careers →
-            </Link>
-          </div>
+
         </div>
 
         {/* Column 3: Studio Links (Same as Navbar) */}
