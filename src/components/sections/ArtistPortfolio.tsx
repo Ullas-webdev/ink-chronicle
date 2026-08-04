@@ -11,13 +11,15 @@ export function ArtistPortfolio() {
       {/* Background Image: Ink Chronicle Studio Storefront */}
       <div className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/storefront-bg.jpg"
-          alt="Ink Chronicle Studio Storefront"
-          className="w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-110"
-        />
-        {/* Dark overlay gradient for ambient studio lighting & contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-black/90 via-ink-black/85 to-ink-black/95 backdrop-blur-[2px]" />
+        <video
+  src="/artist_background.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full h-full object-cover object-center scale-105 filter brightness-125 contrast-130"
+></video>
+<div className="absolute inset-0 bg-gradient-to-b from-ink-black/10 via-ink-black/5 to-ink-black/20 backdrop-blur-[2px]"></div>
       </div>
 
       <div className="mx-auto max-w-shell px-6 md:px-10 relative z-10">
