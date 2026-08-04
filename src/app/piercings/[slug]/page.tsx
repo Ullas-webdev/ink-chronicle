@@ -49,7 +49,7 @@ export default async function PiercingDetailPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           
           {/* Left Column: Large Vector Diagram Box (Beige #f2eae4 with Red/Gold Art) */}
-          <div className="relative aspect-[4/5] w-full bg-[#f2eae4] rounded-sm overflow-hidden p-8 md:p-12 border border-white/10 flex items-center justify-center shadow-2xl sticky top-36">
+          <div className="relative aspect-square md:aspect-[4/5] w-full max-h-[50vh] md:max-h-none bg-[#f2eae4] rounded-sm overflow-hidden p-6 md:p-12 border border-white/10 flex items-center justify-center shadow-2xl md:sticky md:top-36">
             <DetailPiercingDiagram type={item.diagramType} />
           </div>
 
