@@ -97,9 +97,9 @@ export function Hero() {
       >
         <motion.span
           variants={itemFadeUp}
-          className="text-[11px] md:text-xs uppercase tracking-widest3 text-gold-muted mb-8 drop-shadow-md"
+          className="text-[11px] md:text-xs uppercase tracking-widest3 text-gold-muted mb-8 drop-shadow-md font-medium"
         >
-          Rooted in MYSURU. Inspired by MYSELF. Crafted in INK.
+          INK YOUR STORY. WEAR YOUR LEGACY.
         </motion.span>
 
         <motion.h1
