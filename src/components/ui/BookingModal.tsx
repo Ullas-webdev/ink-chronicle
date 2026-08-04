@@ -600,6 +600,16 @@ export function BookingModal() {
 }
 
 function StepContainer({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="w-full flex flex-col" suppressHydrationWarning>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -607,6 +617,7 @@ function StepContainer({ children }: { children: React.ReactNode }) {
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
       className="w-full flex flex-col"
+      suppressHydrationWarning
     >
       {children}
     </motion.div>
