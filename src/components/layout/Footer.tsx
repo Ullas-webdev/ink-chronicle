@@ -2,9 +2,8 @@ import Link from "next/link";
 import { GraduationCap, Instagram } from "lucide-react";
 
 const HOURS = [
-  { day: "Monday — Friday", time: "11:00 — 20:00" },
-  { day: "Saturday", time: "10:00 — 18:00" },
-  { day: "Sunday", time: "By private appointment" },
+  { day: "Monday — Sunday", time: "10:00 AM — 9:00 PM" },
+  { day: "Studio Availability", time: "Mostly 24/7 Open" },
 ];
 
 export function Footer() {
@@ -43,7 +42,7 @@ export function Footer() {
               <GraduationCap size={16} /> Academy & Careers
             </div>
             <p className="text-xs text-bone/70 font-light leading-relaxed">
-              Pavan Mythra personally trains students 1-on-1 for a successful career in tattooing & aesthetics.
+              Pavan Kumar personally trains students 1-on-1 for a successful career in tattooing & aesthetics.
             </p>
             <Link
               href="/careers"

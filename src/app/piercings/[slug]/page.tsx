@@ -63,6 +63,11 @@ export default async function PiercingDetailPage({ params }: Props) {
               <h1 className="font-display text-3xl md:text-4xl text-bone mb-3 uppercase tracking-tight">
                 {item.name}
               </h1>
+              {item.technique && (
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/10 border border-gold/40 rounded text-gold text-xs font-semibold uppercase tracking-wider mb-3">
+                  <span>✦ {item.technique}</span>
+                </div>
+              )}
               <span className="font-display text-3xl text-gold font-semibold block mb-4">
                 {item.price}
               </span>
@@ -103,10 +108,10 @@ export default async function PiercingDetailPage({ params }: Props) {
               {/* Fee Information */}
               <div className="bg-ink-charcoal/60 p-5 rounded-sm border hairline border-gold/10 space-y-2 text-xs md:text-sm">
                 <h3 className="font-semibold text-gold uppercase tracking-wider">
-                  What is the {item.name.toLowerCase()} fee?
+                  What is included in the {item.name.toLowerCase()} fee?
                 </h3>
                 <p className="text-bone/70 font-light leading-relaxed">
-                  The piercing service fee for {item.name} is <strong>{item.price}</strong>. On the day of your appointment, all procedure tools and initial sterile jewelry installation are included.
+                  The service fee for {item.name} is <strong>{item.price}</strong>. On the day of your appointment, all procedure tools and <strong>Initial SS Steel (Surgical Stainless Steel) starter jewelry installation are fully included</strong>.
                 </p>
               </div>
 

@@ -101,7 +101,7 @@ export async function GET() {
         duration: item.duration ? `${Math.floor(item.duration / 60)}:${Math.floor(item.duration % 60).toString().padStart(2, "0")}` : "0:30",
         videoUrl: secureUrl,
         thumbnail: posterUrl,
-        caption: `Live studio session highlight: Master craftsmanship by Pavan Mythra at Ink Chronicle.`,
+        caption: `Live studio session highlight: Master craftsmanship by Pavan Kumar at Ink Chronicle.`,
         instagramUrl: "https://www.instagram.com/_ink_chronicle_?igsh=MTBxcHQyYm92YWNuYw==",
       };
     });

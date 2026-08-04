@@ -49,7 +49,7 @@ export default function PiercingsCatalogPage() {
       </div>
 
       {/* Main Title & Intro Description */}
-      <div className="max-w-3xl mx-auto text-center mb-16 px-4">
+      <div className="max-w-4xl mx-auto text-center mb-16 px-4">
         <span className="text-xs uppercase tracking-widest3 text-gold font-semibold mb-3 block">
           Precision & Sterile Artistry
         </span>
@@ -59,7 +59,37 @@ export default function PiercingsCatalogPage() {
         <p className="text-bone/70 text-sm md:text-base leading-relaxed mb-4 font-light">
           Ink Chronicle Studio is renowned for premium body and ear piercing. Guided by certified piercers and strict hospital-grade sterilization, discover our signature placement menu below.
         </p>
-        <p className="text-bone/50 text-xs font-light tracking-wide">
+
+        {/* Official Studio Pricing Policy Box */}
+        <div className="mt-8 p-6 bg-ink-charcoal border border-gold/30 rounded-sm text-left grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+          <div className="flex items-start gap-3">
+            <span className="text-gold font-bold text-base">✦</span>
+            <div>
+              <h4 className="font-semibold text-bone uppercase tracking-wider mb-1">Ear Lobe Piercing (Gunshot)</h4>
+              <p className="text-bone/70 leading-relaxed font-light">
+                <strong>1 Side:</strong> Rs. 400 &nbsp;|&nbsp; <strong>2 Sides:</strong> Rs. 600<br />
+                <span className="text-gold/80 italic">* Ear Lobe is the ONLY gunshot piercing available in studio.</span>
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-gold font-bold text-base">✦</span>
+            <div>
+              <h4 className="font-semibold text-bone uppercase tracking-wider mb-1">All Other Piercings (Sterile Needle)</h4>
+              <p className="text-bone/70 leading-relaxed font-light">
+                <strong>1 Side / Single:</strong> Rs. 800 &nbsp;|&nbsp; <strong>2 Sides / Pair:</strong> Rs. 1,400 &nbsp;|&nbsp; <strong>3 Sides / Triple:</strong> Rs. 2,200<br />
+                <span className="text-gold/80 italic">* Performed exclusively with 100% single-use sterile needles.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* SS Steel Jewelry Included Highlight */}
+        <div className="mt-4 p-3 bg-gold/10 border border-gold/40 rounded text-center text-xs font-bold text-gold uppercase tracking-wider">
+          ✦ Initial SS Steel (Surgical Stainless Steel) Starter Jewelry Included With Every Session
+        </div>
+
+        <p className="text-bone/50 text-xs font-light tracking-wide mt-6">
           ✦ We pierce clients 14 years and up. Anyone 15 years or younger must have a legal guardian present.
         </p>
       </div>

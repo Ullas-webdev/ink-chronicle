@@ -9,7 +9,7 @@ export function CategoryBanners() {
     <section className="py-10 md:py-14 bg-ink-black border-t hairline">
       <div className="mx-auto max-w-shell px-6 md:px-10">
         
-        {/* Top 2 Cards: Tattoos & Piercings */}
+        {/* Row 1: Tattoos & Piercings */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           
           {/* Card 1: TATTOOS */}
@@ -74,33 +74,100 @@ export function CategoryBanners() {
 
         </div>
 
-        {/* Card 3: AFTERCARE (Full Width Banner) */}
+        {/* Row 2: Tattoo Training & Pencil Art & Paintings */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          
+          {/* Card 3: TATTOO TRAINING */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative h-[380px] md:h-[440px] rounded-sm overflow-hidden group flex flex-col items-center justify-center p-8 text-center border hairline"
+          >
+            <Image
+              src="/tattoo-training-cover.jpg"
+              alt="Tattoo Training Academy"
+              fill
+              className="object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-105 brightness-[0.45]"
+            />
+            <div className="relative z-10 max-w-md flex flex-col items-center">
+              <span className="text-gold text-xs uppercase tracking-widest3 font-semibold mb-2">Academy & Apprenticeship</span>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-bone tracking-wider mb-4 uppercase">
+                TATTOO TRAINING
+              </h2>
+              <p className="text-bone/80 font-light text-sm md:text-base leading-relaxed mb-8">
+                Master the craft of fine line, blackwork, and precision needle technique under world-class atelier masters.
+              </p>
+              <Link
+                href="/tattoo-training"
+                className="bg-white text-black px-8 py-3.5 text-xs font-semibold uppercase tracking-widest2 hover:bg-gold transition-colors duration-300 shadow-lg"
+              >
+                SUBSCRIBE
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Card 4: PENCIL ART & PAINTINGS */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="relative h-[380px] md:h-[440px] rounded-sm overflow-hidden group flex flex-col items-center justify-center p-8 text-center border hairline"
+          >
+            <Image
+              src="/pencil-art-portrait.jpg"
+              alt="Pencil Art and Paintings"
+              fill
+              className="object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-105 brightness-[0.45]"
+            />
+            <div className="relative z-10 max-w-md flex flex-col items-center">
+              <span className="text-gold text-xs uppercase tracking-widest3 font-semibold mb-2">Commissioned Fine Art</span>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-bone tracking-wider mb-4 uppercase">
+                PENCIL ART & PAINTINGS
+              </h2>
+              <p className="text-bone/80 font-light text-sm md:text-base leading-relaxed mb-8">
+                Commission bespoke charcoal pencil portraits, oil paintings, and archival flash art prints by studio artists.
+              </p>
+              <Link
+                href="/pencil-art-and-paintings"
+                className="bg-white text-black px-8 py-3.5 text-xs font-semibold uppercase tracking-widest2 hover:bg-gold transition-colors duration-300 shadow-lg"
+              >
+                ORDER NOW
+              </Link>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* Row 3: Card 5: AFTERCARE (Full Width Banner) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative h-[320px] md:h-[360px] rounded-sm overflow-hidden group flex flex-col items-center justify-center p-8 text-center border hairline"
+          className="relative h-[340px] md:h-[380px] rounded-sm overflow-hidden group flex flex-col items-center justify-center p-8 text-center border hairline"
         >
           <Image
             src="/aftercare-cover.jpg"
-            alt="Aftercare Care Gel"
+            alt="Aftercare Care Gel & Kit"
             fill
             className="object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-105 brightness-[0.4]"
           />
-          <div className="relative z-10 max-w-lg flex flex-col items-center">
-            <span className="text-gold text-xs uppercase tracking-widest3 font-semibold mb-2">Studio Essential — ₹200</span>
+          <div className="relative z-10 max-w-xl flex flex-col items-center">
+            <span className="text-gold text-xs uppercase tracking-widest3 font-semibold mb-2">Essential Gel ₹200 | Complete Kit ₹900</span>
             <h2 className="font-display text-4xl md:text-5xl text-bone tracking-wider mb-4 uppercase">
               AFTERCARE
             </h2>
             <p className="text-bone/80 font-light text-sm md:text-base leading-relaxed mb-6">
-              Flaunt Your Ink Soothing & Healing Gel. Essential protection to heal, cleanse, and preserve your tattoo & piercing.
+              Flaunt Your Ink Soothing Gel (₹200) or Complete Professional 4-Piece Aftercare Kit (₹900). Essential healing protection to preserve your tattoo & piercing.
             </p>
             <Link
               href="/aftercare"
               className="bg-white text-black px-8 py-3.5 text-xs font-semibold uppercase tracking-widest2 hover:bg-gold transition-colors duration-300 shadow-lg"
             >
-              VIEW AFTERCARE — ₹200
+              EXPLORE AFTERCARE — FROM ₹200
             </Link>
           </div>
         </motion.div>

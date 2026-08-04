@@ -11,12 +11,12 @@ import type {
 
 export const artists: Artist[] = [
   {
-    slug: "pavan-mythra",
-    name: "PAVAN MYTHRA",
+    slug: "pavan-kumar",
+    name: "PAVAN KUMAR",
     title: "Owner & Lead Artist",
     signatureStyle: "Tattoo, Piercing, Training, Aesthetic",
-    bio: "Certified Tattoo Artist. Certified Aesthetician. Celebrity Tattoo Artist. Best piercing artist. Establishing his craft since 2017.",
-    yearsActive: 8,
+    bio: "Certified Tattoo Artist. Certified Aesthetician. Celebrity Tattoo Artist. Best piercing artist in Mysuru with 10 years of professional experience.",
+    yearsActive: 10,
     image: "/pavan-mythra.jpg",
     portfolio: [],
   },

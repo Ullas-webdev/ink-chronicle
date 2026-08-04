@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingConsult } from "@/components/layout/FloatingConsult";
 import { LoadingScreen } from "@/components/layout/LoadingScreen";
+import { OfferPopup } from "@/components/ui/OfferPopup";
 
 const display = Bodoni_Moda({
   subsets: ["latin"],
@@ -97,6 +98,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <FloatingConsult />
+          <OfferPopup />
         </SmoothScrollProvider>
       </body>
     </html>

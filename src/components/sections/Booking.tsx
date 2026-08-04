@@ -145,8 +145,9 @@ export function Booking() {
                 <OptionsList
                   options={[
                     "Custom Tattoo / Tattoo Pricing",
-                    "Laser Removal",
                     "Piercings",
+                    "Tattoo Training (Academy)",
+                    "Pencil Art & Paintings",
                   ]}
                   selected={formData.service}
                   onSelect={(v) => handleSelect("service", v)}

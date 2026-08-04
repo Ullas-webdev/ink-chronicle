@@ -5,6 +5,7 @@ import { CategoryBanners } from "@/components/sections/CategoryBanners";
 import { SubscribeDigitalInk } from "@/components/sections/SubscribeDigitalInk";
 import { ArtistPortfolio } from "@/components/sections/ArtistPortfolio";
 import { StyleExplorer } from "@/components/sections/StyleExplorer";
+import { TattooPricing } from "@/components/sections/TattooPricing";
 import { Piercings } from "@/components/sections/Piercings";
 import { Gallery } from "@/components/sections/Gallery";
 import { Process } from "@/components/sections/Process";
@@ -42,6 +43,7 @@ export default function HomePage() {
       <SubscribeDigitalInk />
       <ArtistPortfolio />
       <StyleExplorer />
+      <TattooPricing />
       <Piercings />
       <Gallery />
       <Process />

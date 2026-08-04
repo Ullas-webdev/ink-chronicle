@@ -123,8 +123,9 @@ export function BookingModal() {
                 <OptionsList
                   options={[
                     "Custom Tattoo / Tattoo Pricing",
-                    "Laser Removal",
-                    "Scalp Micropigmentation &/Or Microshading",
+                    "Piercings",
+                    "Tattoo Training (Academy)",
+                    "Pencil Art & Paintings",
                   ]}
                   selected={formData.service}
                   onSelect={(v) => handleSelect("service", v)}

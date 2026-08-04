@@ -13,7 +13,7 @@ export function ArtistPortfolio() {
         <SectionHeading
           eyebrow="The Artist"
           title="Master of the Craft."
-          description="Pavan Mythra brings years of multi-disciplinary expertise to Ink Chronicle, offering elite standards in tattooing, piercing, aesthetics, and training."
+          description="Pavan Kumar brings years of multi-disciplinary expertise to Ink Chronicle, offering elite standards in tattooing, piercing, aesthetics, and training."
         />
 
         <div className="mt-16 flex flex-col">
@@ -46,7 +46,7 @@ export function ArtistPortfolio() {
                   {artist.name}
                 </h3>
                 <p className="text-sm uppercase tracking-widest2 text-bone/40">
-                  {artist.title} — {artist.yearsActive} Years
+                  {artist.title} — {artist.yearsActive} Years Experience
                 </p>
                 <p className="text-bone/60 font-light leading-relaxed max-w-md">
                   {artist.bio}
