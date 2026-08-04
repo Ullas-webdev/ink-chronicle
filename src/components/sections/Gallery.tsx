@@ -266,8 +266,8 @@ export function Gallery() {
               transition={{ duration: 0.35 }}
               className="mt-10"
             >
-              {/* Masonry-style Grid */}
-              <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+              {/* Uniform Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                 {photos.map((photo, idx) => (
                   <motion.div
                     key={photo.id}
@@ -275,15 +275,14 @@ export function Gallery() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: (idx % 4) * 0.08 }}
-                    className="relative break-inside-avoid rounded-sm overflow-hidden group cursor-pointer border border-white/[0.06] hover:border-white/20 transition-all duration-500"
+                    className="relative aspect-[3/4] rounded-sm overflow-hidden group cursor-pointer border border-white/[0.06] hover:border-white/20 transition-all duration-500"
                     onClick={() => setSelectedPhoto(idx)}
                   >
                     <Image
                       src={photo.image}
                       alt={photo.title}
-                      width={400}
-                      height={Math.round(400 * (photo.height / photo.width))}
-                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
 
