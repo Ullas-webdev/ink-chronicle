@@ -385,9 +385,9 @@ export function BookingModal() {
               <>
                 {step === 2 && (
                   <StepContainer key="step2">
-                    <QuestionHeader step="2" title="Would you like a Colour Tattoo or a Black & Grey Tattoo*" />
+                    <QuestionHeader step="2" title="What type of tattoo are you looking for?*" />
                     <OptionsList
-                      options={["Colour", "Black & Grey", "Partial Colour"]}
+                      options={["Basic Tattoo", "Advanced Tattoo", "Coloured Tattoo"]}
                       selected={formData.colorPreference}
                       onSelect={(v) => handleSelect("colorPreference", v)}
                     />
