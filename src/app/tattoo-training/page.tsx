@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Award, BookOpen, ShieldCheck, Wrench, CheckCircle2, ArrowRight, Sparkles, UserCheck, AlertCircle, Mail } from "lucide-react";
+import { Award, BookOpen, ShieldCheck, Wrench, CheckCircle2, ArrowRight, Sparkles, UserCheck, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { TattooTrainingForm } from "@/components/forms/TattooTrainingForm";
 
 export const metadata: Metadata = {
   title: "Tattoo Training Course — Govt. Registered & ISO 9001:2015 Certified Institute, Mysuru",
@@ -240,66 +241,7 @@ export default function TattooTrainingPage() {
             Ready to start your journey in the art world? Reserve your seat for our upcoming certified tattoo training batch in Mysuru.
           </p>
 
-          <div className="bg-white text-black p-8 rounded-lg shadow-2xl text-left">
-            <h3 className="font-display text-2xl font-bold mb-2 text-black">Apply for Tattoo Course</h3>
-            <p className="text-xs text-gray-600 mb-6">Fill out the form below or chat directly on WhatsApp to receive course fee structure & batch schedules.</p>
-
-            <form
-              action="https://wa.me/919916899172"
-              target="_blank"
-              className="flex flex-col gap-4"
-            >
-              <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block mb-1">Full Name</label>
-                <input
-                  required
-                  type="text"
-                  placeholder="Enter your name"
-                  className="w-full bg-gray-50 border border-gray-300 rounded p-3 text-sm text-black focus:outline-none focus:border-black"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block mb-1">Phone Number</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="Enter phone number"
-                    className="w-full bg-gray-50 border border-gray-300 rounded p-3 text-sm text-black focus:outline-none focus:border-black"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block mb-1">Location</label>
-                  <input
-                    readOnly
-                    type="text"
-                    value="Mysuru"
-                    className="w-full bg-gray-100 border border-gray-300 rounded p-3 text-sm text-black font-semibold"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-4 flex flex-col sm:flex-row gap-4">
-                <a
-                  href="mailto:pavanrocker001@gmail.com?subject=Tattoo%20Training%20Course%20Enrollment%20Inquiry%20-%20Ink%20Chronicle%20Mysuru&body=Hi%20Pavan%2C%0A%0AI%20am%20interested%20in%20enrolling%20for%20the%20certified%20Tattoo%20Training%20Course%20at%20Ink%20Chronicle%20in%20Mysuru.%0A%0APlease%20send%20me%20the%20batch%20schedule%2C%20course%20fees%2C%20and%20enrollment%20details.%0A%0AThank%20you!"
-                  className="flex-1 bg-black text-white py-4 px-6 rounded text-xs font-bold uppercase tracking-widest text-center hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
-                >
-                  <Mail size={16} />
-                  <span>EMAIL OWNER DIRECTLY</span>
-                </a>
-                <a
-                  href="https://wa.me/919916899172?text=Hi%2C%20I%20am%20interested%20in%20enrolling%20for%20the%20Tattoo%20Training%20Course%20at%20Ink%20Chronicle%20in%20Mysuru."
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 bg-[#25D366] text-black py-4 px-6 rounded text-xs font-bold uppercase tracking-widest text-center hover:bg-emerald-400 transition-colors flex items-center justify-center gap-2 shadow"
-                >
-                  <span>INQUIRE ON WHATSAPP</span>
-                  <ArrowRight size={16} />
-                </a>
-              </div>
-            </form>
-          </div>
+          <TattooTrainingForm />
         </div>
       </section>
 

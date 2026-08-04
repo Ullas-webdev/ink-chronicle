@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Palette, Frame, ArrowRight, Sparkles, Mail } from "lucide-react";
+import { Sparkles, ArrowRight, ShieldCheck, Palette, Frame, Layers } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { PencilArtForm } from "@/components/forms/PencilArtForm";
 
 export const metadata: Metadata = {
   title: "Pencil Art & Paintings — Bespoke Fine Art Commissions by Ink Chronicle",
@@ -182,78 +183,7 @@ export default function PencilArtPage() {
           <p className="text-bone/80 text-sm md:text-base font-light mb-8 max-w-xl mx-auto">
             Ready to order a custom pencil portrait, charcoal drawing, or oil painting? Fill out your inquiry below or order instantly on WhatsApp.
           </p>
-
-          <div className="bg-white text-black p-8 rounded-lg shadow-2xl text-left">
-            <h3 className="font-display text-2xl font-bold mb-2 text-black">Commission Art Order Form</h3>
-            <p className="text-xs text-gray-600 mb-6">Select your artwork type, size, and details. Our lead artist will contact you with exact timeline & pricing.</p>
-
-            <form
-              action="https://wa.me/919916899172"
-              target="_blank"
-              className="flex flex-col gap-4"
-            >
-              <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block mb-1">Full Name</label>
-                <input
-                  required
-                  type="text"
-                  placeholder="Enter your name"
-                  className="w-full bg-gray-50 border border-gray-300 rounded p-3 text-sm text-black focus:outline-none focus:border-black"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block mb-1">Phone Number</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="Enter phone number"
-                    className="w-full bg-gray-50 border border-gray-300 rounded p-3 text-sm text-black focus:outline-none focus:border-black"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block mb-1">Artwork Medium</label>
-                  <select
-                    className="w-full bg-gray-50 border border-gray-300 rounded p-3 text-sm text-black focus:outline-none focus:border-black font-medium"
-                  >
-                    <option>Pencil Sketch / Portrait</option>
-                    <option>Charcoal Drawing</option>
-                    <option>Oil Painting on Canvas</option>
-                    <option>Archival Flash Art Print</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block mb-1">Artwork Description & Preferred Size</label>
-                <textarea
-                  rows={3}
-                  placeholder="Describe your subject (e.g. Portrait of 2 persons, A3 size 12x16 inches, high detail graphite pencil)..."
-                  className="w-full bg-gray-50 border border-gray-300 rounded p-3 text-sm text-black focus:outline-none focus:border-black font-medium"
-                />
-              </div>
-
-              <div className="mt-4 flex flex-col sm:flex-row gap-4">
-                <a
-                  href="mailto:pavanrocker001@gmail.com?subject=Pencil%20Art%20%26%20Paintings%20Commission%20Order%20-%20Ink%20Chronicle&body=Hi%20Pavan%2C%0A%0AI%20would%20like%20to%20order%20a%20custom%20artwork%20commission%20(Pencil%20Art%20%2F%20Painting)%20from%20Ink%20Chronicle.%0A%0APlease%20contact%20me%20with%20pricing%20and%20timeline%20details.%0A%0AThank%20you!"
-                  className="flex-1 bg-black text-white py-4 px-6 rounded text-xs font-bold uppercase tracking-widest text-center hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 font-bold"
-                >
-                  <Mail size={16} />
-                  <span>EMAIL OWNER DIRECTLY</span>
-                </a>
-                <a
-                  href="https://wa.me/919916899172?text=Hi%2C%20I%20would%20like%20to%20order%20a%20custom%20Pencil%20Art%20%2F%20Painting%20commission%20from%20Ink%20Chronicle."
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 bg-[#25D366] text-black py-4 px-6 rounded text-xs font-bold uppercase tracking-widest text-center hover:bg-emerald-400 transition-colors flex items-center justify-center gap-2 shadow font-bold"
-                >
-                  <span>ORDER ON WHATSAPP</span>
-                  <ArrowRight size={16} />
-                </a>
-              </div>
-            </form>
-          </div>
+          <PencilArtForm />
         </div>
       </section>
 
