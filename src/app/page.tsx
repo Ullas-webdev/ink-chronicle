@@ -12,7 +12,7 @@ import { Process } from "@/components/sections/Process";
 import { Booking } from "@/components/sections/Booking";
 
 export const metadata: Metadata = {
-  title: "Private Luxury Tattoo Studio, Mayfair",
+  title: "Private Luxury Tattoo & Piercing Studio, Mysuru",
 };
 
 const TATTOO_PIERCING_HIGHLIGHTS = [

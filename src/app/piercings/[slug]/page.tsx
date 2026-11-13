@@ -74,12 +74,12 @@ export default async function PiercingDetailPage({ params }: Props) {
             </div>
 
             {/* BOOK NOW Button */}
-            <a
+            <Link
               href="/#booking"
               className="w-full text-center bg-transparent border border-white text-bone py-4 text-xs font-semibold uppercase tracking-widest2 hover:bg-white hover:text-ink-black transition-colors"
             >
               BOOK NOW
-            </a>
+            </Link>
 
             {/* Duration Box */}
             <div className="border border-white/10 p-4 rounded-sm bg-ink-charcoal/50">

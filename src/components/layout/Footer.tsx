@@ -44,24 +44,24 @@ export function Footer() {
           <span className="text-[11px] uppercase tracking-widest2 text-gold-muted mb-1 font-semibold">
             Studio
           </span>
-          <a href="/#artists" className="text-sm text-bone/70 hover:text-gold transition-colors">
+          <Link href="/#artists" className="text-sm text-bone/70 hover:text-gold transition-colors">
             Artists
-          </a>
-          <a href="/#tattoos" className="text-sm text-bone/70 hover:text-gold transition-colors">
+          </Link>
+          <Link href="/#tattoos" className="text-sm text-bone/70 hover:text-gold transition-colors">
             Tattoos
-          </a>
+          </Link>
           <Link href="/piercings" className="text-sm text-bone/70 hover:text-gold transition-colors">
             Piercings
           </Link>
-          <a href="/#gallery" className="text-sm text-bone/70 hover:text-gold transition-colors">
+          <Link href="/#gallery" className="text-sm text-bone/70 hover:text-gold transition-colors">
             Gallery
-          </a>
-          <a href="/#process" className="text-sm text-bone/70 hover:text-gold transition-colors">
+          </Link>
+          <Link href="/#process" className="text-sm text-bone/70 hover:text-gold transition-colors">
             Process
-          </a>
-          <a href="/#booking" className="text-sm text-bone/70 hover:text-gold transition-colors">
+          </Link>
+          <Link href="/#booking" className="text-sm text-bone/70 hover:text-gold transition-colors">
             Booking
-          </a>
+          </Link>
         </div>
 
         {/* Column 4: Legal & Careers Links */}

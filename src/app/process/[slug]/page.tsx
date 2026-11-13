@@ -7,6 +7,12 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  return processSteps.map((step) => ({
+    slug: step.slug,
+  }));
+}
+
 export default async function ProcessPage({ params }: Props) {
   const { slug } = await params;
   const step = processSteps.find((s) => s.slug === slug);
