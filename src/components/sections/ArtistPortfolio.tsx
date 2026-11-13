@@ -17,9 +17,9 @@ export function ArtistPortfolio() {
   muted
   loop
   playsInline
-  className="w-full h-full object-cover object-center scale-105 filter brightness-125 contrast-130"
+  className="w-full h-full object-cover object-center scale-105 filter brightness-100 contrast-120"
 ></video>
-<div className="absolute inset-0 bg-gradient-to-b from-ink-black/10 via-ink-black/5 to-ink-black/20 backdrop-blur-[2px]"></div>
+<div className="absolute inset-0 bg-gradient-to-b from-ink-black/50 via-ink-black/45 to-ink-black/50 backdrop-blur-[2px]"></div>
       </div>
 
       <div className="mx-auto max-w-shell px-6 md:px-10 relative z-10">
